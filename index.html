@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pro Manager 26 – Karriere</title>
+<style>
+:root{--bg:#080d14;--panel:#111a25;--panel2:#182433;--line:#293747;--text:#f3f7fb;--muted:#93a3b7;--green:#b6ff55;--blue:#64b5ff;--red:#ff6b78}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:14px/1.45 Inter,system-ui,-apple-system,Segoe UI,sans-serif}
+button,select{font:inherit;cursor:pointer}button{border:0;transition:.15s}button:hover{filter:brightness(1.12)}.app{min-height:100vh;display:grid;grid-template-columns:205px minmax(0,1fr) 310px;grid-template-rows:66px 1fr}
+header{grid-column:1/-1;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:0 22px;background:#0d141e;border-bottom:1px solid var(--line)}
+.logo{font-size:20px;font-weight:950;letter-spacing:-1px}.logo span{color:var(--green)}.top-right{display:flex;gap:16px;align-items:center;color:var(--muted);font-size:12px}.money{color:var(--green);font-weight:800}
+.sidebar{padding:18px 12px;background:#0c131d;border-right:1px solid var(--line)}.club,.card{background:var(--panel);border:1px solid var(--line);border-radius:12px}.club{padding:12px;margin-bottom:22px}.club-badge{width:42px;height:42px;border-radius:12px;background:var(--green);color:#10190a;display:grid;place-items:center;font-size:20px;font-weight:950;margin-bottom:9px}.club strong{display:block}.club small{color:var(--muted)}.nav-label{font-size:10px;letter-spacing:1.4px;color:#65758a;font-weight:800;padding:10px 12px}.nav-btn{display:block;width:100%;text-align:left;background:transparent;color:#9eafc3;padding:12px;border-radius:8px;margin:3px 0}.nav-btn.active{background:#243321;color:var(--green);font-weight:800}
+.content{padding:24px;min-width:0}.visual{padding:18px;background:#0d151f;border-left:1px solid var(--line)}.eyebrow{font-size:10px;letter-spacing:1.6px;color:var(--green);font-weight:900}.page-title{font-size:29px;line-height:1.1;margin:7px 0}.subtitle,.muted{color:var(--muted);font-size:12px}.section-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:22px 0 10px}.section-head h3{margin:0;font-size:14px}.pill{font-size:10px;color:var(--green);background:#263522;padding:5px 8px;border-radius:20px;font-weight:800}.card{padding:15px;margin-bottom:12px}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.metrics{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:20px}.metric{font-size:25px;font-weight:900;margin:4px 0}.metric-label{font-size:10px;letter-spacing:1px;color:var(--muted);font-weight:800}.action{background:var(--green);color:#10190a;font-weight:950;padding:12px 15px;border-radius:8px}.action.secondary{background:var(--panel2);color:var(--text);border:1px solid var(--line)}.action.small{padding:7px 9px;font-size:11px}.actions{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap}.notice{background:#15202c;border:1px solid var(--line);padding:12px;border-radius:9px;color:var(--muted);font-size:12px;margin-top:14px}
+.player-row{display:grid;grid-template-columns:38px minmax(0,1fr) auto;gap:10px;align-items:center;padding:10px 0;border-bottom:1px solid var(--line)}.player-row:last-child{border-bottom:0}.rating{width:36px;height:36px;border-radius:9px;background:#263522;color:var(--green);display:grid;place-items:center;font-weight:950}.player-info strong{display:block;font-size:12px}.player-info small{color:var(--muted);font-size:10px}.table-row{display:grid;grid-template-columns:28px minmax(90px,1fr) 36px 40px 36px;gap:5px;align-items:center;padding:10px 6px;border-bottom:1px solid var(--line);font-size:12px}.table-row.head{color:var(--muted);font-size:10px;font-weight:800}.pts{color:var(--green);font-weight:900}.fixture{display:grid;grid-template-columns:1fr auto 1fr;gap:8px;align-items:center;padding:12px 0;border-bottom:1px solid var(--line);font-size:12px}.fixture div:last-child{text-align:right}.score{font-weight:950;font-size:16px;background:#263522;color:var(--green);padding:5px 10px;border-radius:7px}.visual-title{display:flex;justify-content:space-between;font-size:10px;letter-spacing:1px;font-weight:900;color:var(--muted);margin-bottom:12px}.live{color:var(--green)}.pitch{height:270px;border-radius:10px;overflow:hidden;position:relative;background:repeating-linear-gradient(0deg,#1a653e 0,#1a653e 33px,#1d7046 33px,#1d7046 66px);border:2px solid #3c8a5c}.pitch:before{content:"";position:absolute;inset:12px;border:2px solid #cde8d3aa}.pitch:after{content:"";position:absolute;width:90px;height:90px;border:2px solid #cde8d3aa;border-radius:50%;left:50%;top:50%;transform:translate(-50%,-50%)}.half{position:absolute;top:12px;bottom:12px;left:50%;border-left:2px solid #cde8d3aa}.boxline{position:absolute;left:25%;right:25%;height:38px;border:2px solid #cde8d3aa}.boxline.top{top:12px}.boxline.bottom{bottom:12px}.dot-player{position:absolute;width:13px;height:13px;border-radius:50%;border:2px solid #fff;background:var(--blue);box-shadow:0 2px 5px #0008;transform:translate(-50%,-50%)}.dot-player.home{background:var(--green)}.ball{position:absolute;width:10px;height:10px;border-radius:50%;background:white;border:1px solid #111;left:50%;top:50%;transform:translate(-50%,-50%)}.result-box{padding:14px;text-align:center;background:#1a2634;border-radius:10px;margin-top:12px}.result-score{font-size:32px;font-weight:950;color:var(--green)}.toast{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);background:var(--green);color:#11190a;padding:12px 18px;border-radius:9px;font-weight:900;box-shadow:0 10px 40px #0008;z-index:5;max-width:90vw;text-align:center}.hidden{display:none!important}
+@media(max-width:1050px){.app{grid-template-columns:180px minmax(0,1fr)}.visual{grid-column:2;border-left:0;border-top:1px solid var(--line)}header{grid-column:1/-1}}
+@media(max-width:650px){.app{display:flex;flex-direction:column}header{min-height:62px;padding:0 12px}.top-right{gap:8px}.sidebar{display:flex;gap:5px;overflow-x:auto;padding:8px;border-right:0;border-bottom:1px solid var(--line)}.club,.nav-label{display:none}.nav-btn{white-space:nowrap;width:auto;margin:0;padding:10px}.content,.visual{padding:15px}.page-title{font-size:25px}.metrics{grid-template-columns:1fr 1fr}.grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="app">
+<header><div class="logo">PRO<span>MANAGER</span> 26</div><div class="top-right"><span id="headerDate">SAISON 2026/27</span><span class="money" id="headerMoney">€ 45,0 Mio.</span></div></header>
+<aside class="sidebar">
+ <div class="club"><div class="club-badge">PM</div><strong id="clubName">FC Bayern München</strong><small>Manager-Karriere</small></div>
+ <div class="nav-label">MANAGEMENT</div>
+ <button type="button" class="nav-btn active" data-tab="dashboard">▦ &nbsp; Übersicht</button><button type="button" class="nav-btn" data-tab="squad">♟ &nbsp; Kader</button><button type="button" class="nav-btn" data-tab="tactics">⌘ &nbsp; Taktik</button><button type="button" class="nav-btn" data-tab="fixtures">◷ &nbsp; Spielplan</button><button type="button" class="nav-btn" data-tab="transfers">⇄ &nbsp; Transfers</button><button type="button" class="nav-btn" data-tab="table">☷ &nbsp; Tabelle</button><button type="button" class="nav-btn" data-tab="competitions">🏆 &nbsp; Wettbewerbe</button><button type="button" class="nav-btn" data-tab="clubs">⚽ &nbsp; Verein wechseln</button>
+ <div class="nav-label" style="margin-top:18px">KARRIERE</div><button type="button" class="nav-btn" data-action="nextday">▶ &nbsp; Zeit vorspulen</button><button type="button" class="nav-btn" data-action="save">▣ &nbsp; Spielstand exportieren</button><button type="button" class="nav-btn" data-action="reset">↻ &nbsp; Neu starten</button>
+</aside>
+<main class="content" id="content"></main>
+<aside class="visual">
+ <div class="visual-title"><span>TRAININGSPLATZ</span><span class="live">● BEREIT</span></div>
+ <div class="pitch" id="pitch"><div class="half"></div><div class="boxline top"></div><div class="boxline bottom"></div><div class="ball" id="ball"></div></div>
+ <div class="card" style="margin-top:14px">
+  <div class="metric-label">NÄCHSTES SPIEL</div>
+  <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;margin:12px 0"><strong id="homeName">FC Neustadt</strong><span class="muted">VS</span><strong id="awayName">SV Hafenstadt</strong></div>
+  <div class="muted" id="nextDate">Spieltag 1</div>
+  <div class="actions"><button type="button" class="action" style="width:100%" data-action="play">SPIEL SIMULIEREN →</button></div>
+  <div id="lastResult" class="result-box hidden"></div>
+ </div>
+ <div class="notice">Tipp: Passe im Menü „Taktik“ deine Formation und deinen Spielstil an. Jeder Klick auf „Spiel simulieren“ aktualisiert Tabelle, Moral und Spielplan.</div>
+</aside>
+</div>
+<div id="toast" class="toast hidden" role="status"></div>
+<script>
+'use strict';
+const $ = id => document.getElementById(id);
+const initialSquad = [
+{name:'M. Adler',pos:'TW',rating:78,age:27,value:7.5,wage:45},{name:'J. Weber',pos:'RV',rating:76,age:24,value:5.5,wage:30},
+{name:'A. König',pos:'IV',rating:81,age:28,value:11,wage:60},{name:'D. Fischer',pos:'IV',rating:79,age:26,value:8.5,wage:48},
+{name:'L. Brandt',pos:'LV',rating:75,age:23,value:5,wage:25},{name:'S. Hoffmann',pos:'ZM',rating:82,age:25,value:14,wage:75},
+{name:'P. Neumann',pos:'ZM',rating:78,age:22,value:8,wage:35},{name:'E. Scholz',pos:'ZM',rating:80,age:27,value:10,wage:55},
+{name:'T. Berger',pos:'RF',rating:83,age:24,value:17,wage:85},{name:'N. Wolf',pos:'ST',rating:84,age:26,value:19,wage:100},
+{name:'F. Krüger',pos:'LF',rating:79,age:21,value:10,wage:40},{name:'K. Roth',pos:'TW',rating:70,age:20,value:1.8,wage:8},
+{name:'B. Lange',pos:'IV',rating:73,age:22,value:3,wage:15},{name:'C. Sommer',pos:'ZM',rating:74,age:21,value:3.8,wage:18},{name:'R. Peters',pos:'ST',rating:72,age:20,value:2.8,wage:12}];
+const bundesligaClubs=[
+ {name:'FC Bayern München',strength:88,budget:180},
+ {name:'Borussia Dortmund',strength:84,budget:95},
+ {name:'RB Leipzig',strength:83,budget:85},
+ {name:'VfB Stuttgart',strength:81,budget:65},
+ {name:'Bayer 04 Leverkusen',strength:84,budget:90},
+ {name:'Eintracht Frankfurt',strength:80,budget:62},
+ {name:'SC Freiburg',strength:78,budget:42},
+ {name:'TSG Hoffenheim',strength:77,budget:48},
+ {name:'1. FSV Mainz 05',strength:76,budget:38},
+ {name:'Borussia Mönchengladbach',strength:77,budget:45},
+ {name:'SV Werder Bremen',strength:76,budget:40},
+ {name:'FC Augsburg',strength:75,budget:35},
+ {name:'1. FC Union Berlin',strength:76,budget:38},
+ {name:'Hamburger SV',strength:75,budget:38},
+ {name:'1. FC Köln',strength:74,budget:32},
+ {name:'FC Schalke 04',strength:74,budget:32},
+ {name:'SC Paderborn 07',strength:71,budget:24},
+ {name:'SV 07 Elversberg',strength:70,budget:20}
+];
+const europeanClubs=[
+ {name:'Arsenal',strength:87},{name:'Aston Villa',strength:82},{name:'Liverpool',strength:89},
+ {name:'Manchester City',strength:90},{name:'Manchester United',strength:83},
+ {name:'Atlético de Madrid',strength:87},{name:'FC Barcelona',strength:90},{name:'Real Betis',strength:80},
+ {name:'Real Madrid',strength:92},{name:'Villarreal CF',strength:82},{name:'Paris Saint-Germain',strength:90},
+ {name:'LOSC Lille',strength:80},{name:'RC Lens',strength:78},{name:'FC Internazionale Milano',strength:89},
+ {name:'SSC Napoli',strength:84},{name:'AS Roma',strength:82},{name:'Como 1907',strength:77},
+ {name:'PSV Eindhoven',strength:83},{name:'Feyenoord Rotterdam',strength:81},{name:'FC Porto',strength:84},
+ {name:'Sporting CP',strength:83},{name:'Club Brugge',strength:79},{name:'Galatasaray',strength:82},
+ {name:'Fenerbahçe',strength:81},{name:'AEK Athen',strength:76},{name:'Bodø/Glimt',strength:77},
+ {name:'Viking FK',strength:72},{name:'LASK',strength:73},{name:'Slavia Prag',strength:78},
+ {name:'Slovan Bratislava',strength:70},{name:'Shakhtar Donezk',strength:79},{name:'Sabah FK',strength:68}
+];
+let opponents=bundesligaClubs.filter(c=>c.name!=='FC Bayern München').map(c=>({...c}));
+function updateOpponents(){opponents=bundesligaClubs.filter(c=>c.name!==state.club).map(c=>({...c}));}
+const market=[
+{name:'L. Seidel',pos:'ZM',rating:77,age:22,value:6.5,wage:32},{name:'M. Yilmaz',pos:'ST',rating:80,age:24,value:12,wage:65},
+{name:'A. Kruse',pos:'IV',rating:76,age:25,value:5.8,wage:28},{name:'J. Brandão',pos:'TW',rating:79,age:26,value:8.5,wage:40},
+{name:'R. Meier',pos:'LF',rating:75,age:20,value:4.2,wage:20},{name:'D. Scholz',pos:'RV',rating:78,age:23,value:7.5,wage:36}];
+let state, squad, transferMarket, opponentIndex, nextOpponent;
+function freshState(){return {club:'FC Bayern München',budget:180,day:1,matchday:1,points:0,wins:0,draws:0,losses:0,goalsFor:0,goalsAgainst:0,morale:82,formation:'4-3-3',tactic:'Ausgewogen',history:[],currentTab:'dashboard',competition:'Liga',cupStage:0,clStage:0,clPoints:0,clWins:0,clDraws:0,clLosses:0,tournamentHistory:[]};}
+function resetGame(){state=freshState();updateOpponents();squad=initialSquad.map(p=>({...p}));transferMarket=market.map(p=>({...p}));opponentIndex=0;nextOpponent=opponents[0];render();notify('Neue Karriere gestartet.');}
+function fmt(n){return Number(n).toLocaleString('de-DE',{minimumFractionDigits:1,maximumFractionDigits:1});}
+function money(n){return '€ '+fmt(n)+' Mio.';}
+function avgRating(){return Math.round(squad.reduce((s,p)=>s+p.rating,0)/Math.max(1,squad.length));}
+function notify(message){const t=$('toast');t.textContent=message;t.classList.remove('hidden');clearTimeout(notify.timer);notify.timer=setTimeout(()=>t.classList.add('hidden'),3000);}
+function poissonScore(lambda){let L=Math.exp(-lambda),k=0,p=1;do{k++;p*=Math.random();}while(p>L&&k<10);return k-1;}
+function syncHeader(){$('headerMoney').textContent=money(state.budget);$('headerDate').textContent='SAISON 2026/27 · TAG '+state.day;$('clubName').textContent=state.club;$('homeName').textContent=state.club;$('awayName').textContent=nextOpponent.name;$('nextDate').textContent=state.competition+' · '+(state.competition==='Liga'?'Spieltag '+state.matchday:state.competition==='Pokal'?(state.cupStage>=4?'Finale':'Runde '+(state.cupStage+1)):'Champions League · '+(state.clStage<7?'Ligaphase '+(state.clStage+1):state.clStage===7?'Halbfinale':'Finale'));}
+function playerRows(list,canSell=false){return list.map(p=>{const i=squad.indexOf(p);return `<div class="player-row"><div class="rating">${p.rating}</div><div class="player-info"><strong>${p.name} <span class="muted">· ${p.pos}</span></strong><small>${p.age} Jahre · Marktwert ${fmt(p.value)} Mio. · Gehalt ${p.wage} Tsd./Woche</small></div>${canSell?`<button type="button" class="action secondary small" data-action="sell" data-index="${i}">VERKAUFEN</button>`:''}</div>`}).join('');}
+function dashboard(){const played=state.wins+state.draws+state.losses;return `<div class="eyebrow">MANAGER-ZENTRALE</div><h1 class="page-title">Willkommen zurück, Coach.</h1><div class="subtitle">Führe deinen Verein durch die Saison 2026/27.</div><div class="metrics"><div class="card"><div class="metric-label">TABELLENPUNKTE</div><div class="metric">${state.points}</div><div class="muted">${played} Spiele absolviert</div></div><div class="card"><div class="metric-label">KADERSTÄRKE</div><div class="metric">${avgRating()}</div><div class="muted">Durchschnittliche Stärke</div></div><div class="card"><div class="metric-label">TEAMMORAL</div><div class="metric">${state.morale}%</div><div class="muted">Stimmung im Team</div></div></div><div class="section-head"><h3>Letztes Ergebnis</h3><span class="pill">SAISON 2026/27</span></div><div class="card">${state.history.length?(()=>{let m=state.history[state.history.length-1];return `<div class="fixture"><div>${m.home}</div><div class="score">${m.homeScore} : ${m.awayScore}</div><div>${m.away}</div></div><div class="muted">${m.comment}</div>`})():'Noch kein Spiel gespielt. Simuliere dein erstes Ligaspiel!'}</div><div class="section-head"><h3>Schnellaktionen</h3></div><div class="actions"><button type="button" class="action" data-action="play">NÄCHSTES SPIEL SIMULIEREN</button><button type="button" class="action secondary" data-tab="tactics">TAKTIK ÄNDERN</button><button type="button" class="action secondary" data-tab="transfers">TRANSFERMARKT</button></div><div class="notice">Die Simulation läuft direkt im Browser und benötigt keine externe Bibliothek. Wenn du auf „Spiel simulieren“ klickst, werden Ergebnis und Tabelle sofort aktualisiert.</div>`;}
+function squadPage(){return `<div class="eyebrow">MANNSCHAFT</div><h1 class="page-title">Dein Kader</h1><div class="subtitle">${squad.length} Spieler · Durchschnittsstärke ${avgRating()}</div><div class="section-head"><h3>Spielerliste</h3><span class="pill">${squad.length} Spieler</span></div><div class="card">${playerRows(squad,true)}</div><div class="notice">Du brauchst mindestens 11 Spieler im Kader. Verkäufe bringen 85 % des Marktwerts ein.</div>`;}
+function tacticsPage(){const formations=['4-3-3','4-4-2','3-5-2','4-2-3-1'],tactics=['Ausgewogen','Offensiv','Defensiv','Pressing'];return `<div class="eyebrow">SPIELPHILOSOPHIE</div><h1 class="page-title">Taktik & Aufstellung</h1><div class="subtitle">Änderungen gelten ab dem nächsten simulierten Spiel.</div><div class="section-head"><h3>Grundformation</h3></div><div class="grid">${formations.map(f=>`<button type="button" class="card" data-action="formation" data-value="${f}" style="text-align:left;color:white;border-color:${state.formation===f?'var(--green)':'var(--line)'}"><div style="font-size:22px;font-weight:900">${f}</div><div class="muted">${state.formation===f?'AKTIV':'Formation auswählen'}</div></button>`).join('')}</div><div class="section-head"><h3>Spielstil</h3></div><div class="grid">${tactics.map(t=>`<button type="button" class="card" data-action="tactic" data-value="${t}" style="text-align:left;color:white;border-color:${state.tactic===t?'var(--green)':'var(--line)'}"><div style="font-weight:900">${t}</div><div class="muted">${t==='Ausgewogen'?'Stabil in allen Mannschaftsteilen':t==='Offensiv'?'Mehr Torchancen, mehr Risiko':t==='Defensiv'?'Weniger Chancen für den Gegner':'Hoher Druck, Moral und Kondition leiden'}</div></button>`).join('')}</div><div class="section-head"><h3>Voraussichtliche Startelf</h3></div><div class="card">${playerRows(squad.slice(0,11))}</div><div class="actions"><button type="button" class="action" data-action="play">TAKTIK TESTEN →</button></div>`;}
+function fixturesPage(){return `<div class="eyebrow">WETTBEWERB</div><h1 class="page-title">Spielplan</h1><div class="subtitle">Deine bisherigen Ergebnisse und das nächste Spiel.</div><div class="section-head"><h3>Saison 2026/27</h3><span class="pill">Spieltag ${state.matchday}</span></div><div class="card">${state.history.length?state.history.slice().reverse().map(m=>`<div class="fixture"><div>${m.home}</div><div class="score">${m.homeScore} : ${m.awayScore}</div><div>${m.away}</div></div>`).join(''):'<div class="muted">Die Saison hat noch nicht begonnen.</div>'}<div class="fixture"><div>${state.matchday<=opponents.length?state.club:nextOpponent.name}</div><div class="score">VS</div><div>${state.matchday<=opponents.length?nextOpponent.name:state.club}</div></div></div><div class="actions"><button type="button" class="action" data-action="play">NÄCHSTES SPIEL SIMULIEREN</button></div>`;}
+function transferPage(){return `<div class="eyebrow">KADERPLANUNG</div><h1 class="page-title">Transfermarkt</h1><div class="subtitle">Verpflichte Verstärkungen innerhalb deines Budgets.</div><div class="card" style="margin-top:18px"><div class="metric-label">TRANSFERBUDGET</div><div class="metric">${money(state.budget)}</div></div><div class="section-head"><h3>Scouting-Liste</h3><span class="pill">${transferMarket.length} Spieler</span></div><div class="card">${transferMarket.length?transferMarket.map((p,i)=>`<div class="player-row"><div class="rating">${p.rating}</div><div class="player-info"><strong>${p.name} · ${p.pos}</strong><small>${p.age} Jahre · Gehalt ${p.wage} Tsd./Woche</small><small>${fmt(p.value)} Mio. Ablöse</small></div><button type="button" class="action small" data-action="buy" data-index="${i}">KAUFEN</button></div>`).join(''):'Keine Spieler mehr auf der Scouting-Liste.'}</div>`;}
+function clubsPage(){
+ return `<div class="eyebrow">VEREINSWAHL</div><h1 class="page-title">Verein wechseln</h1>
+ <div class="subtitle">Du kannst jederzeit zu jedem Verein der Bundesliga wechseln. Der Wechsel setzt deine Saisonstatistik und Pokalwettbewerbe für den neuen Verein zurück.</div>
+ <div class="section-head"><h3>Bundesliga-Vereine</h3><span class="pill">${bundesligaClubs.length} Vereine</span></div>
+ <div class="grid">${bundesligaClubs.map(c=>`<div class="card"><div class="eyebrow">STÄRKE ${c.strength}</div><h3 style="margin:7px 0">${c.name}</h3><div class="muted">Vereinsbudget: ${money(c.budget)}</div>${c.name===state.club?'<div class="pill" style="display:inline-block;margin-top:10px">Dein aktueller Verein</div>':`<button type="button" class="action" style="margin-top:10px;width:100%" data-action="switchClub" data-value="${c.name}">Verein übernehmen</button>`}</div>`).join('')}</div>
+ <div class="notice">Stärken und Budgets sind vereinfachte Spielwerte. Die Spielerkader sind noch fiktiv und dienen der Simulation.</div>`;
+}
+function competitionsPage(){
+ const cupNames=['Achtelfinale','Viertelfinale','Halbfinale','Finale','Abgeschlossen'];
+ const cupLabel=state.cupStage>=4?'Gewonnen / ausgeschieden':cupNames[state.cupStage]||'Achtelfinale';
+ const clLabel=state.clStage<7?'Ligaphase – Spiel '+(state.clStage+1)+' von 7':state.clStage===7?'Halbfinale':'Finale / abgeschlossen';
+ return `<div class="eyebrow">SAISON 2026/27</div><h1 class="page-title">Wettbewerbe</h1><div class="subtitle">Wähle, welchen Wettbewerb du als Nächstes spielen möchtest.</div>
+ <div class="section-head"><h3>Aktiver Wettbewerb</h3><span class="pill">${state.competition}</span></div>
+ <div class="grid">
+  <div class="card"><div class="eyebrow">NATIONALE LIGA</div><h3>Hin- und Rückrunde</h3><p class="muted">Jeder Verein spielt einmal zuhause und einmal auswärts gegen jeden Gegner. Insgesamt 34 Spieltage mit 18 Vereinen.</p><div class="muted">Fortschritt: ${Math.min(opponents.length*2,state.matchday-1)} / ${opponents.length*2}</div><button type="button" class="action" data-action="competition" data-value="Liga">Liga auswählen</button></div>
+  <div class="card"><div class="eyebrow">K.O.-WETTBEWERB</div><h3>Nationaler Pokal</h3><p class="muted">Ein Spiel pro Runde. Bei Gleichstand entscheidet ein Elfmeterschießen.</p><div class="muted">Status: ${cupLabel}</div><button type="button" class="action" data-action="competition" data-value="Pokal">Pokal auswählen</button></div>
+  <div class="card"><div class="eyebrow">EUROPA</div><h3>Champions League</h3><p class="muted">7 Spiele in der Ligaphase, danach Halbfinale und Finale bei erfolgreicher Qualifikation.</p><div class="muted">Fortschritt: ${Math.min(7,state.clStage)} / 7 · ${state.clPoints} Punkte</div><button type="button" class="action" data-action="competition" data-value="Champions League">Champions League auswählen</button></div>
+ </div><div class="section-head"><h3>Wettbewerbshistorie</h3></div><div class="card">${state.tournamentHistory.length?state.tournamentHistory.slice().reverse().map(m=>`<div class="fixture"><div>${m.competition} · ${m.stage}</div><div class="score">${m.homeScore} : ${m.awayScore}</div><div>${m.home} – ${m.away}</div></div>`).join(''):'<div class="muted">Noch keine Pokal- oder Champions-League-Spiele absolviert.</div>'}</div>
+ <div class="actions"><button type="button" class="action" data-action="play">${state.competition==='Liga'?'LIGASPIEL SIMULIEREN':state.competition==='Pokal'?'POKALSPIEL SIMULIEREN':'CHAMPIONS-LEAGUE-SPIEL SIMULIEREN'}</button></div>`;
+}
+function tablePage(){
+ const teams=[{name:state.club,pts:state.points,w:state.wins,d:state.draws,l:state.losses,gf:state.goalsFor,ga:state.goalsAgainst}];
+ const played=Math.max(0,state.matchday-1);
+ opponents.forEach((o,i)=>{
+  // Gegnermannschaften sammeln mit jedem absolvierten Spieltag weitere Saisonpunkte.
+  // Die Punkte wachsen dynamisch mit der Saisonlänge statt bei einem festen Wert stehenzubleiben.
+  const seed=((i*7+3)%5)-2;
+  const rate=1.05+((o.strength-65)*0.035);
+  const pts=Math.max(0,Math.round(played*rate+seed));
+  const w=Math.min(played,Math.floor(pts/2.8));
+  const d=Math.min(played-w,Math.max(0,Math.round(pts-w*3)));
+  const l=Math.max(0,played-w-d);
+  teams.push({name:o.name,pts:Math.max(0,w*3+d),w,d,l,gf:played*1.35+(i*7%5),ga:played*1.15+(i*5%6)});
+ });
+ teams.sort((a,b)=>b.pts-a.pts || (b.gf-b.ga)-(a.gf-a.ga));
+ return `<div class="eyebrow">MEISTERSCHAFT</div><h1 class="page-title">Ligatabelle</h1><div class="subtitle">3 Punkte für einen Sieg, 1 Punkt für ein Unentschieden.</div><div class="section-head"><h3>Aktuelle Tabelle</h3><span class="pill">${played} Spieltage gespielt</span></div><div class="card"><div class="table-row head"><span>#</span><span>Verein</span><span>Sp</span><span>TD</span><span>Pk</span></div>${teams.map((t,i)=>`<div class="table-row" style="${t.name===state.club?'background:#263522;border-radius:6px':''}"><span>${i+1}</span><span style="font-weight:700">${t.name}</span><span>${t.w+t.d+t.l}</span><span>${Math.round(t.gf-t.ga)}</span><span class="pts">${t.pts}</span></div>`).join('')}</div><div class="notice">Die Saisonwerte aller Vereine entwickeln sich mit jedem simulierten Spieltag weiter.</div>`;
+}
+function render(){syncHeader();const pages={dashboard,squad:squadPage,tactics:tacticsPage,fixtures:fixturesPage,transfers:transferPage,table:tablePage,competitions:competitionsPage,clubs:clubsPage};$('content').innerHTML=pages[state.currentTab]();document.querySelectorAll('.nav-btn[data-tab]').forEach(b=>b.classList.toggle('active',b.dataset.tab===state.currentTab));}
+function playMatch(){
+ try{
+  if(!Array.isArray(squad)||squad.length<11){notify('Du brauchst mindestens 11 Spieler im Kader.');return;}
+  let opponent, stage, homeName=state.club, awayName, competition=state.competition, home=true;
+  if(competition==='Liga'){
+   if(state.matchday>opponents.length*2){notify('Die Liga ist beendet. Du kannst einen anderen Wettbewerb wählen oder eine neue Karriere starten.');return;}
+   const idx=(state.matchday-1)%opponents.length;
+   opponent=opponents[idx]; home=state.matchday<=opponents.length;
+   if(!home) homeName=opponent.name;
+   awayName=home?opponent.name:state.club; stage='Spieltag '+state.matchday;
+  }else if(competition==='Pokal'){
+   if(state.cupStage>=4){notify('Dein Pokalwettbewerb ist bereits abgeschlossen.');return;}
+   const cupOpponents=[opponents[2],opponents[5],opponents[7],opponents[9]];
+   opponent=cupOpponents[state.cupStage]||opponents[0]; stage=['Achtelfinale','Viertelfinale','Halbfinale','Finale'][state.cupStage];
+   home=(state.cupStage%2===0); if(!home)homeName=opponent.name; awayName=home?opponent.name:state.club;
+  }else{
+   if(state.clStage>=9){notify('Deine Champions-League-Saison ist abgeschlossen.');return;}
+   if(state.clStage<7){opponent=europeanClubs[(state.clStage*5+3)%europeanClubs.length];stage='Ligaphase '+(state.clStage+1)+'/7';home=state.clStage%2===0;}
+   else{opponent=europeanClubs[state.clStage===7?8:15];stage=state.clStage===7?'Halbfinale':'Finale';home=true;}
+   if(!home)homeName=opponent.name;awayName=home?opponent.name:state.club;
+  }
+  const homeRating=avgRating(); let homeExpected=1.35+(homeRating-opponent.strength)*0.035,awayExpected=1.1+(opponent.strength-homeRating)*0.03;
+  if(state.tactic==='Offensiv'){homeExpected+=0.45;awayExpected+=0.25;}else if(state.tactic==='Defensiv'){homeExpected-=0.25;awayExpected-=0.35;}else if(state.tactic==='Pressing'){homeExpected+=0.35;awayExpected-=0.08;state.morale=Math.max(20,state.morale-2);}
+  if(state.formation==='3-5-2')homeExpected+=0.08;if(state.formation==='4-2-3-1')awayExpected-=0.05;
+  let homeScore=poissonScore(Math.max(.2,homeExpected)),awayScore=poissonScore(Math.max(.2,awayExpected));
+  // Simulated home/away order is reflected in the display; resolve outcomes from the player's perspective.
+  let playerScore=home?homeScore:awayScore, rivalScore=home?awayScore:homeScore;
+  if(competition!=='Liga'&&playerScore===rivalScore){playerScore++; if(home)homeScore++;else awayScore++;}
+  const result={competition,stage,home:homeName,away:awayName,homeScore,awayScore,playerScore,rivalScore,matchday:state.matchday};
+  if(competition==='Liga'){
+   if(playerScore>rivalScore){state.wins++;state.points+=3;state.morale=Math.min(100,state.morale+4);}else if(playerScore===rivalScore){state.draws++;state.points++;state.morale=Math.min(100,state.morale+1);}else{state.losses++;state.morale=Math.max(20,state.morale-5);}
+   state.goalsFor+=playerScore;state.goalsAgainst+=rivalScore;state.history.push(result);state.matchday++;
+  }else if(competition==='Pokal'){
+   state.cupStage++;
+   if(playerScore<rivalScore)state.cupStage=4;
+   state.tournamentHistory.push(result);
+  }else{
+   if(state.clStage<7){if(playerScore>rivalScore){state.clWins++;state.clPoints+=3;}else if(playerScore===rivalScore){state.clDraws++;state.clPoints++;}else state.clLosses++;state.clStage++;}
+   else if(playerScore<rivalScore){state.clStage=9;}else state.clStage++;
+   state.tournamentHistory.push(result);
+  }
+  state.day+=7;const wageBill=squad.reduce((sum,p)=>sum+(Number(p.wage)||0),0)/1000;state.budget=Math.max(0,state.budget-wageBill*.08);
+  opponentIndex=(opponentIndex+1)%opponents.length;nextOpponent=opponents[opponentIndex];
+  render();const box=$('lastResult');if(box){box.classList.remove('hidden');box.innerHTML='<div class="muted">'+competition.toUpperCase()+' · '+stage+'</div><div class="result-score">'+homeScore+' : '+awayScore+'</div><strong>'+homeName+' – '+awayName+'</strong><div class="muted" style="margin-top:6px">'+(playerScore>rivalScore?'Sieg!':playerScore===rivalScore?'Unentschieden.':'Niederlage.')+'</div>';}
+  try{animateBall();}catch(e){}notify(competition+': '+homeScore+' : '+awayScore);
+ }catch(error){console.error('Simulationsfehler:',error);notify('Fehler bei der Simulation. Bitte erneut versuchen.');}
+}
+function animateBall(){const ball=$('ball');if(!ball)return;if(typeof ball.animate==='function'){ball.animate([{left:'50%',top:'50%'},{left:'68%',top:'35%'},{left:'32%',top:'65%'},{left:'50%',top:'50%'}],{duration:900,easing:'ease-in-out'});}}
+function buyPlayer(index){const p=transferMarket[index];if(!p)return;if(state.budget<p.value){notify('Nicht genug Budget für diesen Transfer.');return;}if(squad.some(x=>x.name===p.name)){notify('Dieser Spieler ist bereits im Kader.');return;}state.budget-=p.value;squad.push({...p});transferMarket.splice(index,1);render();notify(p.name+' wurde verpflichtet!');}
+function sellPlayer(index){const p=squad[index];if(!p)return;if(squad.length<=11){notify('Du brauchst mindestens 11 Spieler im Kader.');return;}state.budget+=p.value*.85;squad.splice(index,1);render();notify(p.name+' wurde verkauft.');}
+function nextDay(){state.day++;if(state.day%7===0){const wages=squad.reduce((sum,p)=>sum+p.wage,0)/1000;state.budget=Math.max(0,state.budget-wages*.08);}render();notify('Ein Tag ist vergangen.');}
+function saveGame(){const data={state,squad,transferMarket,opponentIndex};const blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download='pro-manager-26-spielstand.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);notify('Spielstand exportiert.');}
+document.addEventListener('click',function(e){const target=e.target;const btn=target&&typeof target.closest==='function'?target.closest('button'):null;if(!btn)return;if(btn.dataset.tab){e.preventDefault();state.currentTab=btn.dataset.tab;render();return;}const action=btn.dataset.action;if(!action)return;e.preventDefault();if(action==='play')playMatch();else if(action==='switchClub'){
+ const chosen=bundesligaClubs.find(c=>c.name===btn.dataset.value);
+ if(!chosen)return;
+ state.club=chosen.name;state.budget=chosen.budget;state.matchday=1;state.points=0;state.wins=0;state.draws=0;state.losses=0;state.goalsFor=0;state.goalsAgainst=0;state.morale=82;state.history=[];state.cupStage=0;state.clStage=0;state.clPoints=0;state.clWins=0;state.clDraws=0;state.clLosses=0;state.tournamentHistory=[];state.competition='Liga';
+ const offset=Math.round((chosen.strength-80)*0.65);
+ squad=initialSquad.map(p=>({...p,rating:Math.max(60,Math.min(92,p.rating+offset)),value:Math.max(1,Number((p.value*(1+offset*0.025)).toFixed(1)))}));
+ transferMarket=market.map(p=>({...p}));
+ updateOpponents();opponentIndex=0;nextOpponent=opponents[0];state.currentTab='dashboard';render();notify('Du bist jetzt Manager von '+chosen.name+'.');return;
+ }else if(action==='competition'){state.competition=btn.dataset.value;nextOpponent=opponents[0];render();notify(state.competition+' ausgewählt.');}else if(action==='buy')buyPlayer(Number(btn.dataset.index));else if(action==='sell')sellPlayer(Number(btn.dataset.index));else if(action==='formation'){state.formation=btn.dataset.value;render();notify('Formation geändert: '+state.formation);}else if(action==='tactic'){state.tactic=btn.dataset.value;render();notify('Spielstil geändert: '+state.tactic);}else if(action==='nextday')nextDay();else if(action==='save')saveGame();else if(action==='reset'){if(confirm('Wirklich eine neue Karriere starten? Dein aktueller Spielstand wird zurückgesetzt.'))resetGame();}},true);
+resetGame();
+</script>
+</body>
+</html>
