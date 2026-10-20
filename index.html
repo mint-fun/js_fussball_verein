@@ -85,21 +85,134 @@ const europeanClubs=[
  {name:'Viking FK',strength:72},{name:'LASK',strength:73},{name:'Slavia Prag',strength:78},
  {name:'Slovan Bratislava',strength:70},{name:'Shakhtar Donezk',strength:79},{name:'Sabah FK',strength:68}
 ];
+
+const premierLeagueClubs=[
+ {name:'Arsenal',strength:87},{name:'Aston Villa',strength:82},{name:'Liverpool',strength:89},{name:'Manchester City',strength:90},{name:'Manchester United',strength:83},{name:'Chelsea',strength:84},{name:'Tottenham Hotspur',strength:82},{name:'Newcastle United',strength:83},{name:'Brighton & Hove Albion',strength:79},{name:'West Ham United',strength:78},{name:'Crystal Palace',strength:77},{name:'Everton',strength:75},{name:'Fulham',strength:76},{name:'Brentford',strength:76},{name:'Nottingham Forest',strength:76},{name:'Wolverhampton Wanderers',strength:74},{name:'AFC Bournemouth',strength:76},{name:'Leeds United',strength:74}
+];
+const laLigaClubs=[
+ {name:'Real Madrid',strength:92},{name:'FC Barcelona',strength:90},{name:'Atlético de Madrid',strength:87},{name:'Villarreal CF',strength:82},{name:'Real Betis',strength:80},{name:'Athletic Bilbao',strength:81},{name:'Real Sociedad',strength:80},{name:'Sevilla FC',strength:79},{name:'Valencia CF',strength:77},{name:'Girona FC',strength:78},{name:'Celta Vigo',strength:76},{name:'CA Osasuna',strength:76},{name:'Getafe CF',strength:74},{name:'RCD Mallorca',strength:75},{name:'Rayo Vallecano',strength:75},{name:'Espanyol',strength:74},{name:'Elche CF',strength:72},{name:'Levante UD',strength:71}
+];
+const serieAClubs=[
+ {name:'FC Internazionale Milano',strength:89},{name:'SSC Napoli',strength:84},{name:'AS Roma',strength:82},{name:'Como 1907',strength:77},{name:'AC Milan',strength:85},{name:'Juventus',strength:84},{name:'Atalanta BC',strength:83},{name:'SS Lazio',strength:80},{name:'ACF Fiorentina',strength:79},{name:'Bologna FC',strength:79},{name:'Torino FC',strength:76},{name:'Udinese Calcio',strength:75},{name:'Genoa CFC',strength:74},{name:'Parma Calcio',strength:73},{name:'Cagliari Calcio',strength:72},{name:'US Lecce',strength:71},{name:'Hellas Verona',strength:71},{name:'Venezia FC',strength:70}
+];
+const ligue1Clubs=[
+ {name:'Paris Saint-Germain',strength:90},{name:'LOSC Lille',strength:80},{name:'RC Lens',strength:78},{name:'Olympique Marseille',strength:82},{name:'AS Monaco',strength:81},{name:'Olympique Lyonnais',strength:79},{name:'OGC Nice',strength:78},{name:'Stade Rennais',strength:77},{name:'RC Strasbourg',strength:75},{name:'Toulouse FC',strength:74},{name:'FC Nantes',strength:73},{name:'Stade Brestois',strength:76},{name:'Montpellier HSC',strength:72},{name:'AJ Auxerre',strength:71},{name:'Angers SCO',strength:70},{name:'Le Havre AC',strength:70},{name:'FC Metz',strength:69},{name:'AS Saint-Étienne',strength:72}
+];
+const eredivisieClubs=[
+ {name:'PSV Eindhoven',strength:83},{name:'Feyenoord Rotterdam',strength:81},{name:'Ajax',strength:82},{name:'AZ Alkmaar',strength:78},{name:'FC Twente',strength:77},{name:'FC Utrecht',strength:76},{name:'Go Ahead Eagles',strength:73},{name:'SC Heerenveen',strength:72},{name:'Sparta Rotterdam',strength:72},{name:'NEC Nijmegen',strength:72},{name:'Fortuna Sittard',strength:70},{name:'PEC Zwolle',strength:69},{name:'Heracles Almelo',strength:69},{name:'Willem II',strength:68},{name:'FC Groningen',strength:70},{name:'NAC Breda',strength:68},{name:'RKC Waalwijk',strength:67},{name:'Almere City',strength:66}
+];
+const portugalClubs=[{name:'FC Porto',strength:84},{name:'Sporting CP',strength:83},{name:'Benfica',strength:85},{name:'SC Braga',strength:78},{name:'Vitória SC',strength:75},{name:'Boavista',strength:70},{name:'Famalicão',strength:72},{name:'Rio Ave',strength:70},{name:'Casa Pia',strength:69},{name:'Moreirense',strength:69},{name:'Gil Vicente',strength:69},{name:'Estoril Praia',strength:68},{name:'Arouca',strength:68},{name:'Nacional',strength:67},{name:'Farense',strength:67},{name:'Santa Clara',strength:68},{name:'AVS',strength:65},{name:'Estrela Amadora',strength:66}];
+function domesticLeagueFor(club){
+ if(bundesligaClubs.some(c=>c.name===club))return bundesligaClubs;
+ if(premierLeagueClubs.some(c=>c.name===club))return premierLeagueClubs;
+ if(laLigaClubs.some(c=>c.name===club))return laLigaClubs;
+ if(serieAClubs.some(c=>c.name===club))return serieAClubs;
+ if(ligue1Clubs.some(c=>c.name===club))return ligue1Clubs;
+ if(eredivisieClubs.some(c=>c.name===club))return eredivisieClubs;
+ if(portugalClubs.some(c=>c.name===club))return portugalClubs;
+ // Für weitere Länder gibt es eine eigene internationale Liga aus den übrigen europäischen Clubs.
+ return europeanClubs.filter(c=>!bundesligaClubs.some(b=>b.name===c.name));
+}
+
+const realRosters={
+ 'FC Bayern München':[
+  ['Manuel Neuer','TW',87,39,2.0,250],['Sven Ulreich','TW',72,37,1.0,35],
+  ['Dayot Upamecano','IV',84,27,50,120],['Kim Min-jae','IV',82,29,35,100],['Jonathan Tah','IV',84,30,30,100],
+  ['Alphonso Davies','LV',86,25,60,110],['Konrad Laimer','RV',82,29,30,90],['Joshua Kimmich','ZM',88,31,70,200],
+  ['Aleksandar Pavlović','ZM',80,22,35,65],['Leon Goretzka','ZM',81,31,20,100],['Jamal Musiala','OM',90,23,140,180],
+  ['Michael Olise','RF',87,24,90,130],['Leroy Sané','RF',83,30,25,110],['Harry Kane','ST',92,33,65,250],
+  ['Serge Gnabry','LF',82,31,20,100],['Kingsley Coman','LF',82,30,30,100]
+ ],
+ 'Borussia Dortmund':[
+  ['Gregor Kobel','TW',86,28,40,90],['Nico Schlotterbeck','IV',85,26,55,100],['Niklas Süle','IV',79,31,10,90],
+  ['Waldemar Anton','IV',80,30,18,65],['Julian Ryerson','RV',80,28,15,50],['Felix Nmecha','ZM',80,25,25,60],
+  ['Pascal Groß','ZM',79,35,4,45],['Marcel Sabitzer','ZM',82,32,12,80],['Julian Brandt','OM',83,30,25,90],
+  ['Karim Adeyemi','LF',82,24,35,70],['Serhou Guirassy','ST',84,30,35,90],['Maximilian Beier','ST',80,23,25,50],
+  ['Jamie Gittens','LF',81,22,30,45],['Emre Can','ZM',78,32,8,75]
+ ],
+ 'Real Madrid':[
+  ['Thibaut Courtois','TW',90,34,25,120],['Dani Carvajal','RV',82,34,6,90],['Antonio Rüdiger','IV',86,33,20,110],
+  ['Éder Militão','IV',85,28,40,100],['Ferland Mendy','LV',82,31,18,80],['Jude Bellingham','OM',91,23,180,200],
+  ['Federico Valverde','ZM',90,28,130,180],['Aurélien Tchouaméni','ZM',86,26,80,140],['Eduardo Camavinga','ZM',85,23,80,100],
+  ['Vinícius Júnior','LF',92,26,200,250],['Kylian Mbappé','ST',94,27,220,300],['Rodrygo','RF',87,25,100,150],
+  ['Arda Güler','OM',83,21,60,70],['Brahim Díaz','OM',82,26,35,80]
+ ],
+ 'FC Barcelona':[
+  ['Marc-André ter Stegen','TW',86,34,15,100],['Ronald Araújo','IV',85,27,55,100],['Pau Cubarsí','IV',84,19,60,35],
+  ['Jules Koundé','RV',86,27,60,120],['Alejandro Balde','LV',83,23,45,60],['Pedri','ZM',91,23,150,180],
+  ['Gavi','ZM',85,22,80,100],['Frenkie de Jong','ZM',86,29,45,150],['Fermín López','OM',82,23,35,50],
+  ['Lamine Yamal','RF',93,19,200,150],['Raphinha','LF',88,29,80,150],['Robert Lewandowski','ST',87,38,10,200],
+  ['Ferran Torres','ST',82,26,30,100],['Dani Olmo','OM',85,28,60,120]
+ ],
+ 'Manchester City':[
+  ['Ederson','TW',86,33,25,100],['Rúben Dias','IV',87,29,65,150],['John Stones','IV',83,32,15,100],
+  ['Josko Gvardiol','LV',86,24,80,100],['Rico Lewis','RV',80,21,35,45],['Rodri','ZM',92,30,110,200],
+  ['Bernardo Silva','OM',87,32,30,180],['Phil Foden','OM',89,26,110,180],['Kevin De Bruyne','OM',88,35,15,200],
+  ['Erling Haaland','ST',94,26,200,250],['Omar Marmoush','ST',83,27,50,100],['Savinho','RF',82,22,50,60],
+  ['Jeremy Doku','LF',84,24,65,90],['Mateo Kovačić','ZM',82,32,15,100]
+ ],
+ 'Liverpool':[
+  ['Alisson Becker','TW',89,33,25,120],['Virgil van Dijk','IV',88,35,18,200],['Ibrahima Konaté','IV',85,27,50,100],
+  ['Trent Alexander-Arnold','RV',87,28,70,180],['Andy Robertson','LV',83,32,10,100],['Alexis Mac Allister','ZM',87,27,90,100],
+  ['Dominik Szoboszlai','ZM',85,25,75,100],['Ryan Gravenberch','ZM',84,24,60,80],['Mohamed Salah','RF',91,34,30,250],
+  ['Luis Díaz','LF',86,29,70,150],['Cody Gakpo','LF',84,27,55,100],['Darwin Núñez','ST',82,27,45,120],
+  ['Diogo Jota','ST',84,29,35,120],['Harvey Elliott','OM',80,23,25,50]
+ ],
+ 'Arsenal':[
+  ['David Raya','TW',87,31,40,90],['William Saliba','IV',89,25,100,120],['Gabriel Magalhães','IV',86,28,70,100],
+  ['Ben White','RV',84,28,45,90],['Riccardo Calafiori','LV',83,24,45,70],['Declan Rice','ZM',90,27,120,180],
+  ['Martin Ødegaard','OM',89,27,100,180],['Bukayo Saka','RF',91,25,150,180],['Kai Havertz','ST',85,27,60,140],
+  ['Gabriel Martinelli','LF',84,25,65,100],['Leandro Trossard','LF',83,31,20,100],['Jurrien Timber','RV',84,25,55,80],
+  ['Mikel Merino','ZM',83,30,35,100],['Gabriel Jesus','ST',81,29,25,100]
+ ],
+ 'Paris Saint-Germain':[
+  ['Gianluigi Donnarumma','TW',88,27,45,120],['Marquinhos','IV',86,32,25,150],['Achraf Hakimi','RV',88,27,80,120],
+  ['Nuno Mendes','LV',86,24,70,90],['Warren Zaïre-Emery','ZM',84,20,60,60],['Vitinha','ZM',88,26,90,100],
+  ['João Neves','ZM',86,22,80,80],['Ousmane Dembélé','RF',88,29,75,180],['Bradley Barcola','LF',86,24,90,80],
+  ['Désiré Doué','OM',85,21,80,60],['Gonçalo Ramos','ST',83,25,40,90],['Khvicha Kvaratskhelia','LF',88,25,100,100]
+ ],
+ 'FC Internazionale Milano':[
+  ['Yann Sommer','TW',85,37,4,90],['Alessandro Bastoni','IV',88,27,80,100],['Benjamin Pavard','IV',84,30,25,100],
+  ['Federico Dimarco','LV',86,28,50,90],['Denzel Dumfries','RV',83,30,25,90],['Nicolò Barella','ZM',89,29,90,120],
+  ['Hakan Çalhanoğlu','ZM',87,32,20,100],['Henrikh Mkhitaryan','ZM',81,37,2,90],['Lautaro Martínez','ST',90,29,110,150],
+  ['Marcus Thuram','ST',86,29,75,100],['Piotr Zieliński','ZM',83,32,15,100],['Davide Frattesi','ZM',82,26,30,60]
+ ]
+};
+function makeRoster(club){
+ const raw=realRosters[club];
+ if(raw) return raw.map(([name,pos,rating,age,value,wage])=>({name,pos,rating,age,value,wage}));
+ // Für weitere europäische und Bundesliga-Clubs werden echte Namen aus der jeweiligen bekannten Mannschaftsstruktur ergänzt.
+ // Für Vereine ohne hinterlegten Detailkader wird kein fremder echter Kader vorgetäuscht.
+ // Bis der jeweilige Kader ergänzt ist, bleiben dort die neutralen Startspieler als Platzhalter.
+ return initialSquad.map(p=>({...p}));
+}
+
 let opponents=bundesligaClubs.filter(c=>c.name!=='FC Bayern München').map(c=>({...c}));
-function updateOpponents(){opponents=bundesligaClubs.filter(c=>c.name!==state.club).map(c=>({...c}));}
+function updateOpponents(){const league=domesticLeagueFor(state.club);opponents=league.filter(c=>c.name!==state.club).map(c=>({...c}));}
 const market=[
 {name:'L. Seidel',pos:'ZM',rating:77,age:22,value:6.5,wage:32},{name:'M. Yilmaz',pos:'ST',rating:80,age:24,value:12,wage:65},
 {name:'A. Kruse',pos:'IV',rating:76,age:25,value:5.8,wage:28},{name:'J. Brandão',pos:'TW',rating:79,age:26,value:8.5,wage:40},
 {name:'R. Meier',pos:'LF',rating:75,age:20,value:4.2,wage:20},{name:'D. Scholz',pos:'RV',rating:78,age:23,value:7.5,wage:36}];
 let state, squad, transferMarket, opponentIndex, nextOpponent;
-function freshState(){return {club:'FC Bayern München',budget:180,day:1,matchday:1,points:0,wins:0,draws:0,losses:0,goalsFor:0,goalsAgainst:0,morale:82,formation:'4-3-3',tactic:'Ausgewogen',history:[],currentTab:'dashboard',competition:'Liga',cupStage:0,clStage:0,clPoints:0,clWins:0,clDraws:0,clLosses:0,tournamentHistory:[]};}
-function resetGame(){state=freshState();updateOpponents();squad=initialSquad.map(p=>({...p}));transferMarket=market.map(p=>({...p}));opponentIndex=0;nextOpponent=opponents[0];render();notify('Neue Karriere gestartet.');}
+function freshState(){return {club:'FC Bayern München',budget:180,day:1,matchday:1,points:0,wins:0,draws:0,losses:0,goalsFor:0,goalsAgainst:0,morale:82,formation:'4-3-3',tactic:'Ausgewogen',history:[],currentTab:'dashboard',competition:'Liga',cupStage:0,clStage:0,clPoints:0,clWins:0,clDraws:0,clLosses:0,clTable:{},clRank:null,clTieAggregate:0,tournamentHistory:[],leagueStats:{}};}
+function clTeams(){const all=[...bundesligaClubs,...premierLeagueClubs,...laLigaClubs,...serieAClubs,...ligue1Clubs,...eredivisieClubs,...portugalClubs,...europeanClubs];const unique=[...new Map(all.map(c=>[c.name,c])).values()];const club=unique.find(c=>c.name===state.club)||{name:state.club,strength:80};return [club,...unique.filter(c=>c.name!==state.club).sort((a,b)=>b.strength-a.strength)].slice(0,36);}
+function ensureClTable(){if(!state.clTable)state.clTable={};clTeams().forEach(c=>{if(!state.clTable[c.name])state.clTable[c.name]={points:0,wins:0,draws:0,losses:0,gf:0,ga:0,played:0,strength:c.strength};});}
+function clTableRows(){ensureClTable();return clTeams().map(c=>({name:c.name,strength:c.strength,...state.clTable[c.name]})).sort((a,b)=>b.points-a.points||(b.gf-b.ga)-(a.gf-a.ga)||b.gf-a.gf||b.strength-a.strength);}
+function clRank(){return clTableRows().findIndex(t=>t.name===state.club)+1;}
+function clAddResult(name,gf,ga){ensureClTable();const x=state.clTable[name];if(!x)return;x.gf+=gf;x.ga+=ga;x.played++;if(gf>ga){x.wins++;x.points+=3;}else if(gf===ga){x.draws++;x.points++;}else x.losses++;}
+function simulateOtherClMatches(excludeA,excludeB){const teams=clTeams().filter(c=>c.name!==excludeA&&c.name!==excludeB);for(let i=0;i+1<teams.length;i+=2){const a=teams[i],b=teams[i+1];const ga=poissonScore(Math.max(.25,1.25+(a.strength-80)*.035));const gb=poissonScore(Math.max(.25,1.25+(b.strength-80)*.035));clAddResult(a.name,ga,gb);clAddResult(b.name,gb,ga);}}
+function resetGame(){state=freshState();ensureLeagueStats();ensureClTable();updateOpponents();loadClubLeagueStats(state.club);squad=makeRoster(state.club);transferMarket=market.map(p=>({...p}));opponentIndex=0;nextOpponent=opponents[0];render();notify('Neue Karriere gestartet.');}
+function blankClubStats(){return {points:0,wins:0,draws:0,losses:0,goalsFor:0,goalsAgainst:0,played:0};}
+function ensureLeagueStats(){if(!state.leagueStats)state.leagueStats={};[...bundesligaClubs,...premierLeagueClubs,...laLigaClubs,...serieAClubs,...ligue1Clubs,...eredivisieClubs,...portugalClubs,...europeanClubs].forEach(c=>{if(!state.leagueStats[c.name])state.leagueStats[c.name]=blankClubStats();});}
+function saveClubLeagueStats(club=state.club){ensureLeagueStats();state.leagueStats[club]={points:state.points,wins:state.wins,draws:state.draws,losses:state.losses,goalsFor:state.goalsFor,goalsAgainst:state.goalsAgainst,played:state.wins+state.draws+state.losses};}
+function loadClubLeagueStats(club){ensureLeagueStats();const x=state.leagueStats[club]||blankClubStats();state.points=x.points;state.wins=x.wins;state.draws=x.draws;state.losses=x.losses;state.goalsFor=x.goalsFor;state.goalsAgainst=x.goalsAgainst;}
+function simulateOtherLeagueResults(opponentName,playerScore,rivalScore){ensureLeagueStats();saveClubLeagueStats(state.club);const league=domesticLeagueFor(state.club);league.forEach(team=>{if(team.name===state.club)return;const row=state.leagueStats[team.name]||(state.leagueStats[team.name]=blankClubStats());let gf,ga;if(team.name===opponentName){gf=rivalScore;ga=playerScore;}else{const power=(team.strength-75)*0.025;gf=poissonScore(Math.max(.25,1.25+power));ga=poissonScore(Math.max(.25,1.2-power));}row.goalsFor+=gf;row.goalsAgainst+=ga;row.played++;if(gf>ga){row.wins++;row.points+=3;}else if(gf===ga){row.draws++;row.points++;}else row.losses++;});saveClubLeagueStats(state.club);}
 function fmt(n){return Number(n).toLocaleString('de-DE',{minimumFractionDigits:1,maximumFractionDigits:1});}
 function money(n){return '€ '+fmt(n)+' Mio.';}
 function avgRating(){return Math.round(squad.reduce((s,p)=>s+p.rating,0)/Math.max(1,squad.length));}
 function notify(message){const t=$('toast');t.textContent=message;t.classList.remove('hidden');clearTimeout(notify.timer);notify.timer=setTimeout(()=>t.classList.add('hidden'),3000);}
 function poissonScore(lambda){let L=Math.exp(-lambda),k=0,p=1;do{k++;p*=Math.random();}while(p>L&&k<10);return k-1;}
-function syncHeader(){$('headerMoney').textContent=money(state.budget);$('headerDate').textContent='SAISON 2026/27 · TAG '+state.day;$('clubName').textContent=state.club;$('homeName').textContent=state.club;$('awayName').textContent=nextOpponent.name;$('nextDate').textContent=state.competition+' · '+(state.competition==='Liga'?'Spieltag '+state.matchday:state.competition==='Pokal'?(state.cupStage>=4?'Finale':'Runde '+(state.cupStage+1)):'Champions League · '+(state.clStage<7?'Ligaphase '+(state.clStage+1):state.clStage===7?'Halbfinale':'Finale'));}
+function syncHeader(){$('headerMoney').textContent=money(state.budget);$('headerDate').textContent='SAISON 2026/27 · TAG '+state.day;$('clubName').textContent=state.club;$('homeName').textContent=state.club;$('awayName').textContent=nextOpponent.name;$('nextDate').textContent=state.competition+' · '+(state.competition==='Liga'?'Spieltag '+state.matchday:state.competition==='Pokal'?(state.cupStage>=4?'Finale':'Runde '+(state.cupStage+1)):'Champions League · '+(state.clStage<8?'Ligaphase '+(state.clStage+1)+'/8':state.clStage<10?'Play-offs':state.clStage<12?'Achtelfinale':state.clStage<14?'Viertelfinale':state.clStage<16?'Halbfinale':state.clStage===16?'Finale':'beendet'));}
 function playerRows(list,canSell=false){return list.map(p=>{const i=squad.indexOf(p);return `<div class="player-row"><div class="rating">${p.rating}</div><div class="player-info"><strong>${p.name} <span class="muted">· ${p.pos}</span></strong><small>${p.age} Jahre · Marktwert ${fmt(p.value)} Mio. · Gehalt ${p.wage} Tsd./Woche</small></div>${canSell?`<button type="button" class="action secondary small" data-action="sell" data-index="${i}">VERKAUFEN</button>`:''}</div>`}).join('');}
 function dashboard(){const played=state.wins+state.draws+state.losses;return `<div class="eyebrow">MANAGER-ZENTRALE</div><h1 class="page-title">Willkommen zurück, Coach.</h1><div class="subtitle">Führe deinen Verein durch die Saison 2026/27.</div><div class="metrics"><div class="card"><div class="metric-label">TABELLENPUNKTE</div><div class="metric">${state.points}</div><div class="muted">${played} Spiele absolviert</div></div><div class="card"><div class="metric-label">KADERSTÄRKE</div><div class="metric">${avgRating()}</div><div class="muted">Durchschnittliche Stärke</div></div><div class="card"><div class="metric-label">TEAMMORAL</div><div class="metric">${state.morale}%</div><div class="muted">Stimmung im Team</div></div></div><div class="section-head"><h3>Letztes Ergebnis</h3><span class="pill">SAISON 2026/27</span></div><div class="card">${state.history.length?(()=>{let m=state.history[state.history.length-1];return `<div class="fixture"><div>${m.home}</div><div class="score">${m.homeScore} : ${m.awayScore}</div><div>${m.away}</div></div><div class="muted">${m.comment}</div>`})():'Noch kein Spiel gespielt. Simuliere dein erstes Ligaspiel!'}</div><div class="section-head"><h3>Schnellaktionen</h3></div><div class="actions"><button type="button" class="action" data-action="play">NÄCHSTES SPIEL SIMULIEREN</button><button type="button" class="action secondary" data-tab="tactics">TAKTIK ÄNDERN</button><button type="button" class="action secondary" data-tab="transfers">TRANSFERMARKT</button></div><div class="notice">Die Simulation läuft direkt im Browser und benötigt keine externe Bibliothek. Wenn du auf „Spiel simulieren“ klickst, werden Ergebnis und Tabelle sofort aktualisiert.</div>`;}
 function squadPage(){return `<div class="eyebrow">MANNSCHAFT</div><h1 class="page-title">Dein Kader</h1><div class="subtitle">${squad.length} Spieler · Durchschnittsstärke ${avgRating()}</div><div class="section-head"><h3>Spielerliste</h3><span class="pill">${squad.length} Spieler</span></div><div class="card">${playerRows(squad,true)}</div><div class="notice">Du brauchst mindestens 11 Spieler im Kader. Verkäufe bringen 85 % des Marktwerts ein.</div>`;}
@@ -108,40 +221,34 @@ function fixturesPage(){return `<div class="eyebrow">WETTBEWERB</div><h1 class="
 function transferPage(){return `<div class="eyebrow">KADERPLANUNG</div><h1 class="page-title">Transfermarkt</h1><div class="subtitle">Verpflichte Verstärkungen innerhalb deines Budgets.</div><div class="card" style="margin-top:18px"><div class="metric-label">TRANSFERBUDGET</div><div class="metric">${money(state.budget)}</div></div><div class="section-head"><h3>Scouting-Liste</h3><span class="pill">${transferMarket.length} Spieler</span></div><div class="card">${transferMarket.length?transferMarket.map((p,i)=>`<div class="player-row"><div class="rating">${p.rating}</div><div class="player-info"><strong>${p.name} · ${p.pos}</strong><small>${p.age} Jahre · Gehalt ${p.wage} Tsd./Woche</small><small>${fmt(p.value)} Mio. Ablöse</small></div><button type="button" class="action small" data-action="buy" data-index="${i}">KAUFEN</button></div>`).join(''):'Keine Spieler mehr auf der Scouting-Liste.'}</div>`;}
 function clubsPage(){
  return `<div class="eyebrow">VEREINSWAHL</div><h1 class="page-title">Verein wechseln</h1>
- <div class="subtitle">Du kannst jederzeit zu jedem Verein der Bundesliga wechseln. Der Wechsel setzt deine Saisonstatistik und Pokalwettbewerbe für den neuen Verein zurück.</div>
- <div class="section-head"><h3>Bundesliga-Vereine</h3><span class="pill">${bundesligaClubs.length} Vereine</span></div>
+ <div class="subtitle">Wechsle jederzeit den Verein und führe dieselbe Saison weiter: Spieltag, Ergebnisse, Punkte und Wettbewerbsfortschritt bleiben erhalten. Nur Verein, Kader und Vereinsbudget wechseln.</div>
+ <div class="section-head"><h3>Bundesliga</h3><span class="pill">${bundesligaClubs.length} Vereine</span></div>
  <div class="grid">${bundesligaClubs.map(c=>`<div class="card"><div class="eyebrow">STÄRKE ${c.strength}</div><h3 style="margin:7px 0">${c.name}</h3><div class="muted">Vereinsbudget: ${money(c.budget)}</div>${c.name===state.club?'<div class="pill" style="display:inline-block;margin-top:10px">Dein aktueller Verein</div>':`<button type="button" class="action" style="margin-top:10px;width:100%" data-action="switchClub" data-value="${c.name}">Verein übernehmen</button>`}</div>`).join('')}</div>
+ <div class="section-head"><h3>Europa</h3><span class="pill">${europeanClubs.length} Vereine</span></div>
+ <div class="grid">${[...new Map([...europeanClubs,...premierLeagueClubs,...laLigaClubs,...serieAClubs,...ligue1Clubs,...eredivisieClubs,...portugalClubs].map(c=>[c.name,c])).values()].map(c=>`<div class="card"><div class="eyebrow">EUROPA · STÄRKE ${c.strength}</div><h3 style="margin:7px 0">${c.name}</h3><div class="muted">Vereinsbudget: ${money(Math.round(c.strength*1.15))}</div>${c.name===state.club?'<div class="pill" style="display:inline-block;margin-top:10px">Dein aktueller Verein</div>':`<button type="button" class="action" style="margin-top:10px;width:100%" data-action="switchClub" data-value="${c.name}">Verein übernehmen</button>`}</div>`).join('')}</div>
  <div class="notice">Stärken und Budgets sind vereinfachte Spielwerte. Die Spielerkader sind noch fiktiv und dienen der Simulation.</div>`;
 }
 function competitionsPage(){
  const cupNames=['Achtelfinale','Viertelfinale','Halbfinale','Finale','Abgeschlossen'];
  const cupLabel=state.cupStage>=4?'Gewonnen / ausgeschieden':cupNames[state.cupStage]||'Achtelfinale';
- const clLabel=state.clStage<7?'Ligaphase – Spiel '+(state.clStage+1)+' von 7':state.clStage===7?'Halbfinale':'Finale / abgeschlossen';
+ const clLabel=state.clStage<8?'Ligaphase – Spiel '+(state.clStage+1)+' von 8':state.clStage<10?'K.-o.-Play-offs':state.clStage<12?'Achtelfinale':state.clStage<14?'Viertelfinale':state.clStage<16?'Halbfinale':state.clStage===16?'Finale':'abgeschlossen';
+ const clRows=clTableRows(); const rank=clRank();
  return `<div class="eyebrow">SAISON 2026/27</div><h1 class="page-title">Wettbewerbe</h1><div class="subtitle">Wähle, welchen Wettbewerb du als Nächstes spielen möchtest.</div>
  <div class="section-head"><h3>Aktiver Wettbewerb</h3><span class="pill">${state.competition}</span></div>
  <div class="grid">
-  <div class="card"><div class="eyebrow">NATIONALE LIGA</div><h3>Hin- und Rückrunde</h3><p class="muted">Jeder Verein spielt einmal zuhause und einmal auswärts gegen jeden Gegner. Insgesamt 34 Spieltage mit 18 Vereinen.</p><div class="muted">Fortschritt: ${Math.min(opponents.length*2,state.matchday-1)} / ${opponents.length*2}</div><button type="button" class="action" data-action="competition" data-value="Liga">Liga auswählen</button></div>
+  <div class="card"><div class="eyebrow">NATIONALE LIGA</div><h3>Hin- und Rückrunde</h3><p class="muted">Du spielst in der nationalen Liga deines Vereins – mit Hin- und Rückrunde gegen alle Ligakonkurrenten.</p><div class="muted">Fortschritt: ${Math.min(opponents.length*2,state.matchday-1)} / ${opponents.length*2}</div><button type="button" class="action" data-action="competition" data-value="Liga">Liga auswählen</button></div>
   <div class="card"><div class="eyebrow">K.O.-WETTBEWERB</div><h3>Nationaler Pokal</h3><p class="muted">Ein Spiel pro Runde. Bei Gleichstand entscheidet ein Elfmeterschießen.</p><div class="muted">Status: ${cupLabel}</div><button type="button" class="action" data-action="competition" data-value="Pokal">Pokal auswählen</button></div>
-  <div class="card"><div class="eyebrow">EUROPA</div><h3>Champions League</h3><p class="muted">7 Spiele in der Ligaphase, danach Halbfinale und Finale bei erfolgreicher Qualifikation.</p><div class="muted">Fortschritt: ${Math.min(7,state.clStage)} / 7 · ${state.clPoints} Punkte</div><button type="button" class="action" data-action="competition" data-value="Champions League">Champions League auswählen</button></div>
- </div><div class="section-head"><h3>Wettbewerbshistorie</h3></div><div class="card">${state.tournamentHistory.length?state.tournamentHistory.slice().reverse().map(m=>`<div class="fixture"><div>${m.competition} · ${m.stage}</div><div class="score">${m.homeScore} : ${m.awayScore}</div><div>${m.home} – ${m.away}</div></div>`).join(''):'<div class="muted">Noch keine Pokal- oder Champions-League-Spiele absolviert.</div>'}</div>
+  <div class="card"><div class="eyebrow">EUROPA</div><h3>Champions League</h3><p class="muted">UEFA-Format: 36 Teams in einer Ligatabelle, 8 verschiedene Gegner. Plätze 1–8 direkt ins Achtelfinale, Plätze 9–24 in die Play-offs, Plätze 25–36 scheiden aus. Danach Hin- und Rückspiele bis zum Finale.</p><div class="muted">Phase: ${clLabel} · ${Math.min(8,state.clStage)} / 8 Ligaspiele · ${state.clPoints} Punkte${state.clRank?' · Platz '+state.clRank:''}</div><button type="button" class="action" data-action="competition" data-value="Champions League">Champions League auswählen</button></div>
+ </div><div class="section-head"><h3>Champions-League-Tabelle · 36 Teams</h3><span class="pill">Dein Platz: ${rank}</span></div><div class="card"><div class="table-row head"><span>#</span><span>Verein</span><span>Sp</span><span>TD</span><span>Pk</span></div>${clRows.map((t,i)=>`<div class="table-row" style="${t.name===state.club?'background:#263522;border-radius:6px':''}"><span>${i+1}</span><span style="font-weight:700">${t.name}</span><span>${t.played}</span><span>${t.gf-t.ga}</span><span class="pts">${t.points}</span></div>`).join('')}</div><div class="section-head"><h3>Wettbewerbshistorie</h3></div><div class="card">${state.tournamentHistory.length?state.tournamentHistory.slice().reverse().map(m=>`<div class="fixture"><div>${m.competition} · ${m.stage}</div><div class="score">${m.homeScore} : ${m.awayScore}</div><div>${m.home} – ${m.away}</div></div>`).join(''):'<div class="muted">Noch keine Pokal- oder Champions-League-Spiele absolviert.</div>'}</div>
  <div class="actions"><button type="button" class="action" data-action="play">${state.competition==='Liga'?'LIGASPIEL SIMULIEREN':state.competition==='Pokal'?'POKALSPIEL SIMULIEREN':'CHAMPIONS-LEAGUE-SPIEL SIMULIEREN'}</button></div>`;
 }
 function tablePage(){
- const teams=[{name:state.club,pts:state.points,w:state.wins,d:state.draws,l:state.losses,gf:state.goalsFor,ga:state.goalsAgainst}];
+ ensureLeagueStats();saveClubLeagueStats(state.club);
+ const league=domesticLeagueFor(state.club);
+ const teams=league.map(c=>{const x=state.leagueStats[c.name]||blankClubStats();return {name:c.name,pts:x.points,w:x.wins,d:x.draws,l:x.losses,gf:x.goalsFor,ga:x.goalsAgainst};});
  const played=Math.max(0,state.matchday-1);
- opponents.forEach((o,i)=>{
-  // Gegnermannschaften sammeln mit jedem absolvierten Spieltag weitere Saisonpunkte.
-  // Die Punkte wachsen dynamisch mit der Saisonlänge statt bei einem festen Wert stehenzubleiben.
-  const seed=((i*7+3)%5)-2;
-  const rate=1.05+((o.strength-65)*0.035);
-  const pts=Math.max(0,Math.round(played*rate+seed));
-  const w=Math.min(played,Math.floor(pts/2.8));
-  const d=Math.min(played-w,Math.max(0,Math.round(pts-w*3)));
-  const l=Math.max(0,played-w-d);
-  teams.push({name:o.name,pts:Math.max(0,w*3+d),w,d,l,gf:played*1.35+(i*7%5),ga:played*1.15+(i*5%6)});
- });
  teams.sort((a,b)=>b.pts-a.pts || (b.gf-b.ga)-(a.gf-a.ga));
- return `<div class="eyebrow">MEISTERSCHAFT</div><h1 class="page-title">Ligatabelle</h1><div class="subtitle">3 Punkte für einen Sieg, 1 Punkt für ein Unentschieden.</div><div class="section-head"><h3>Aktuelle Tabelle</h3><span class="pill">${played} Spieltage gespielt</span></div><div class="card"><div class="table-row head"><span>#</span><span>Verein</span><span>Sp</span><span>TD</span><span>Pk</span></div>${teams.map((t,i)=>`<div class="table-row" style="${t.name===state.club?'background:#263522;border-radius:6px':''}"><span>${i+1}</span><span style="font-weight:700">${t.name}</span><span>${t.w+t.d+t.l}</span><span>${Math.round(t.gf-t.ga)}</span><span class="pts">${t.pts}</span></div>`).join('')}</div><div class="notice">Die Saisonwerte aller Vereine entwickeln sich mit jedem simulierten Spieltag weiter.</div>`;
+ return `<div class="eyebrow">MEISTERSCHAFT</div><h1 class="page-title">Ligatabelle</h1><div class="subtitle">3 Punkte für einen Sieg, 1 Punkt für ein Unentschieden. Jeder Verein behält seine eigene Saisonbilanz – auch nach deinem Wechsel.</div><div class="section-head"><h3>Aktuelle Tabelle</h3><span class="pill">${played} Spieltage gespielt</span></div><div class="card"><div class="table-row head"><span>#</span><span>Verein</span><span>Sp</span><span>TD</span><span>Pk</span></div>${teams.map((t,i)=>`<div class="table-row" style="${t.name===state.club?'background:#263522;border-radius:6px':''}"><span>${i+1}</span><span style="font-weight:700">${t.name}</span><span>${t.w+t.d+t.l}</span><span>${Math.round(t.gf-t.ga)}</span><span class="pts">${t.pts}</span></div>`).join('')}</div><div class="notice">Die Tabelle speichert die Saisonwerte für jeden Verein separat. Wenn du wechselst, übernimmt dein neuer Verein seine bisherigen Punkte; dein alter Verein behält seine Position.</div>`;
 }
 function render(){syncHeader();const pages={dashboard,squad:squadPage,tactics:tacticsPage,fixtures:fixturesPage,transfers:transferPage,table:tablePage,competitions:competitionsPage,clubs:clubsPage};$('content').innerHTML=pages[state.currentTab]();document.querySelectorAll('.nav-btn[data-tab]').forEach(b=>b.classList.toggle('active',b.dataset.tab===state.currentTab));}
 function playMatch(){
@@ -160,9 +267,16 @@ function playMatch(){
    opponent=cupOpponents[state.cupStage]||opponents[0]; stage=['Achtelfinale','Viertelfinale','Halbfinale','Finale'][state.cupStage];
    home=(state.cupStage%2===0); if(!home)homeName=opponent.name; awayName=home?opponent.name:state.club;
   }else{
-   if(state.clStage>=9){notify('Deine Champions-League-Saison ist abgeschlossen.');return;}
-   if(state.clStage<7){opponent=europeanClubs[(state.clStage*5+3)%europeanClubs.length];stage='Ligaphase '+(state.clStage+1)+'/7';home=state.clStage%2===0;}
-   else{opponent=europeanClubs[state.clStage===7?8:15];stage=state.clStage===7?'Halbfinale':'Finale';home=true;}
+   ensureClTable();
+   if(state.clStage===8){state.clRank=clRank();if(state.clRank<=8){state.clStage=10;notify('Platz '+state.clRank+': direkt für das Achtelfinale qualifiziert!');}else if(state.clRank>24){state.clStage=17;notify('Platz '+state.clRank+': aus der Champions League ausgeschieden.');return;}}
+   if(state.clStage>=17){notify('Deine Champions-League-Saison ist abgeschlossen.');return;}
+   const clOpponents=clTeams().filter(c=>c.name!==state.club);
+   if(state.clStage<8){opponent=clOpponents[state.clStage]||clOpponents[0];stage='Champions League · Ligaphase '+(state.clStage+1)+'/8';home=state.clStage%2===0;}
+   else if(state.clStage<10){opponent=clOpponents[(state.clStage+7)%clOpponents.length];stage='Champions League · K.-o.-Play-offs · '+(state.clStage===8?'Hinspiel':'Rückspiel');home=state.clStage===8;}
+   else if(state.clStage<12){opponent=clOpponents[(state.clStage+11)%clOpponents.length];stage='Champions League · Achtelfinale · '+(state.clStage===10?'Hinspiel':'Rückspiel');home=state.clStage===11;}
+   else if(state.clStage<14){opponent=clOpponents[(state.clStage+15)%clOpponents.length];stage='Champions League · Viertelfinale · '+(state.clStage===12?'Hinspiel':'Rückspiel');home=state.clStage===13;}
+   else if(state.clStage<16){opponent=clOpponents[(state.clStage+19)%clOpponents.length];stage='Champions League · Halbfinale · '+(state.clStage===14?'Hinspiel':'Rückspiel');home=state.clStage===15;}
+   else{opponent=clOpponents[0];stage='Champions League · Finale';home=true;}
    if(!home)homeName=opponent.name;awayName=home?opponent.name:state.club;
   }
   const homeRating=avgRating(); let homeExpected=1.35+(homeRating-opponent.strength)*0.035,awayExpected=1.1+(opponent.strength-homeRating)*0.03;
@@ -171,7 +285,7 @@ function playMatch(){
   let homeScore=poissonScore(Math.max(.2,homeExpected)),awayScore=poissonScore(Math.max(.2,awayExpected));
   // Simulated home/away order is reflected in the display; resolve outcomes from the player's perspective.
   let playerScore=home?homeScore:awayScore, rivalScore=home?awayScore:homeScore;
-  if(competition!=='Liga'&&playerScore===rivalScore){playerScore++; if(home)homeScore++;else awayScore++;}
+  if(competition==='Pokal'&&playerScore===rivalScore){playerScore++; if(home)homeScore++;else awayScore++;}
   const result={competition,stage,home:homeName,away:awayName,homeScore,awayScore,playerScore,rivalScore,matchday:state.matchday};
   if(competition==='Liga'){
    if(playerScore>rivalScore){state.wins++;state.points+=3;state.morale=Math.min(100,state.morale+4);}else if(playerScore===rivalScore){state.draws++;state.points++;state.morale=Math.min(100,state.morale+1);}else{state.losses++;state.morale=Math.max(20,state.morale-5);}
@@ -181,10 +295,20 @@ function playMatch(){
    if(playerScore<rivalScore)state.cupStage=4;
    state.tournamentHistory.push(result);
   }else{
-   if(state.clStage<7){if(playerScore>rivalScore){state.clWins++;state.clPoints+=3;}else if(playerScore===rivalScore){state.clDraws++;state.clPoints++;}else state.clLosses++;state.clStage++;}
-   else if(playerScore<rivalScore){state.clStage=9;}else state.clStage++;
+   if(state.clStage<8){
+    if(playerScore>rivalScore){state.clWins++;state.clPoints+=3;}else if(playerScore===rivalScore){state.clDraws++;state.clPoints++;}else state.clLosses++;
+    clAddResult(state.club,playerScore,rivalScore);clAddResult(opponent.name,rivalScore,playerScore);simulateOtherClMatches(state.club,opponent.name);state.clStage++;
+    if(state.clStage===8){state.clRank=clRank();}
+   }else if(state.clStage===16){state.clStage=17;if(playerScore>rivalScore)notify('Champions-League-Sieger! Du hast den Titel gewonnen!');else notify('Das Champions-League-Finale ist verloren.');}
+   else{
+    state.clTieAggregate+=playerScore-rivalScore;
+    const secondLeg=[9,11,13,15].includes(state.clStage);
+    if(secondLeg){if(state.clTieAggregate===0)state.clTieAggregate=Math.random()<.5?1:-1;if(state.clTieAggregate<0){state.clStage=17;notify('Du bist nach Hin- und Rückspiel ausgeschieden.');}else{state.clStage++;state.clTieAggregate=0;}}
+    else state.clStage++;
+   }
    state.tournamentHistory.push(result);
   }
+  if(competition==='Liga')simulateOtherLeagueResults(opponent.name,playerScore,rivalScore);
   state.day+=7;const wageBill=squad.reduce((sum,p)=>sum+(Number(p.wage)||0),0)/1000;state.budget=Math.max(0,state.budget-wageBill*.08);
   opponentIndex=(opponentIndex+1)%opponents.length;nextOpponent=opponents[opponentIndex];
   render();const box=$('lastResult');if(box){box.classList.remove('hidden');box.innerHTML='<div class="muted">'+competition.toUpperCase()+' · '+stage+'</div><div class="result-score">'+homeScore+' : '+awayScore+'</div><strong>'+homeName+' – '+awayName+'</strong><div class="muted" style="margin-top:6px">'+(playerScore>rivalScore?'Sieg!':playerScore===rivalScore?'Unentschieden.':'Niederlage.')+'</div>';}
@@ -197,13 +321,19 @@ function sellPlayer(index){const p=squad[index];if(!p)return;if(squad.length<=11
 function nextDay(){state.day++;if(state.day%7===0){const wages=squad.reduce((sum,p)=>sum+p.wage,0)/1000;state.budget=Math.max(0,state.budget-wages*.08);}render();notify('Ein Tag ist vergangen.');}
 function saveGame(){const data={state,squad,transferMarket,opponentIndex};const blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download='pro-manager-26-spielstand.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);notify('Spielstand exportiert.');}
 document.addEventListener('click',function(e){const target=e.target;const btn=target&&typeof target.closest==='function'?target.closest('button'):null;if(!btn)return;if(btn.dataset.tab){e.preventDefault();state.currentTab=btn.dataset.tab;render();return;}const action=btn.dataset.action;if(!action)return;e.preventDefault();if(action==='play')playMatch();else if(action==='switchClub'){
- const chosen=bundesligaClubs.find(c=>c.name===btn.dataset.value);
+ const chosen=[...bundesligaClubs,...europeanClubs,...premierLeagueClubs,...laLigaClubs,...serieAClubs,...ligue1Clubs,...eredivisieClubs,...portugalClubs].find(c=>c.name===btn.dataset.value);
  if(!chosen)return;
- state.club=chosen.name;state.budget=chosen.budget;state.matchday=1;state.points=0;state.wins=0;state.draws=0;state.losses=0;state.goalsFor=0;state.goalsAgainst=0;state.morale=82;state.history=[];state.cupStage=0;state.clStage=0;state.clPoints=0;state.clWins=0;state.clDraws=0;state.clLosses=0;state.tournamentHistory=[];state.competition='Liga';
- const offset=Math.round((chosen.strength-80)*0.65);
- squad=initialSquad.map(p=>({...p,rating:Math.max(60,Math.min(92,p.rating+offset)),value:Math.max(1,Number((p.value*(1+offset*0.025)).toFixed(1)))}));
+ const previousClub=state.club;
+ // Jeder Verein hat eigene Tabellenwerte. Beim Wechsel bleiben die Werte des alten
+ // Vereins dort gespeichert; der neue Verein übernimmt seine eigene Saisonbilanz.
+ saveClubLeagueStats(previousClub);
+ state.club=chosen.name;loadClubLeagueStats(chosen.name);ensureClTable();state.budget=chosen.budget||Math.round(chosen.strength*1.15);
+ squad=makeRoster(chosen.name);
  transferMarket=market.map(p=>({...p}));
- updateOpponents();opponentIndex=0;nextOpponent=opponents[0];state.currentTab='dashboard';render();notify('Du bist jetzt Manager von '+chosen.name+'.');return;
+ updateOpponents();
+ opponentIndex=opponents.length?(Math.max(0,state.matchday-1)%opponents.length):0;
+ nextOpponent=opponents[opponentIndex]||europeanClubs.find(c=>c.name!==chosen.name)||{name:'International XI',strength:75};
+ state.currentTab='dashboard';render();notify('Vereinswechsel: '+previousClub+' → '+chosen.name+'. Du übernimmst den Saisonstand von '+chosen.name+'; '+previousClub+' behält seine Werte.');return;
  }else if(action==='competition'){state.competition=btn.dataset.value;nextOpponent=opponents[0];render();notify(state.competition+' ausgewählt.');}else if(action==='buy')buyPlayer(Number(btn.dataset.index));else if(action==='sell')sellPlayer(Number(btn.dataset.index));else if(action==='formation'){state.formation=btn.dataset.value;render();notify('Formation geändert: '+state.formation);}else if(action==='tactic'){state.tactic=btn.dataset.value;render();notify('Spielstil geändert: '+state.tactic);}else if(action==='nextday')nextDay();else if(action==='save')saveGame();else if(action==='reset'){if(confirm('Wirklich eine neue Karriere starten? Dein aktueller Spielstand wird zurückgesetzt.'))resetGame();}},true);
 resetGame();
 </script>
